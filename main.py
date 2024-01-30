@@ -5,7 +5,8 @@ import logging
 logging.basicConfig(filename='renomeador.log', level=logging.INFO)
 
 try:
-    diretorios = ['/storage/emulated/0/Download/teste']  # Lista de diretórios para renomeação
+    # Lista de diretórios para renomeação
+    diretorios = ['/storage/emulated/0/Download/teste']
 
     for diretorio in diretorios:
         os.chdir(diretorio)
@@ -34,18 +35,16 @@ try:
 
     print(f'\nArquivos renomeados com sucesso.')
 
-except Exception as e:
-    print(f'Ocorreu um erro: {e}')
-    logging.error(f'Ocorreu um erro: {e}')
+    # Pergunta ao usuário se deseja reverter as renomeações
+    reverter = input('Deseja reverter as renomeações? (S/N): ').lower()
 
-try:
-    # Reverter renomeações
-    for diretorio in diretorios:
+    if reverter == 's':
+        # Reverter renomeações
         for antigo_nome, novo_nome in renomeacoes:
             os.rename(novo_nome, antigo_nome)
 
-    print('\nRenomeações revertidas com sucesso.')
+        print('\nRenomeações revertidas com sucesso.')
 
 except Exception as e:
-    print(f'Ocorreu um erro ao reverter as renomeações: {e}')
-    logging.error(f'Ocorreu um erro ao reverter as renomeações: {e}')
+    print(f'Ocorreu um erro: {e}')
+    logging.error(f'Ocorreu um erro: {e}')
