@@ -6,7 +6,7 @@ logging.basicConfig(filename='renomeador.log', level=logging.INFO)
 
 try:
     # Lista de diretórios para renomeação
-    diretorios = ['/storage/emulated/0/Download/teste']
+    diretorios = ['/diretorio/para/renomeacao']
 
     for diretorio in diretorios:
         os.chdir(diretorio)
