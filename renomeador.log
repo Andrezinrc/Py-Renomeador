@@ -1,0 +1,16 @@
+INFO:root:Diretório: /storage/emulated/0/teste
+INFO:root:
+Renomeações realizadas em /storage/emulated/0/teste: [('foto 0.txt', 'photo 0.txt')]
+INFO:root:Diretório: /storage/emulated/0/Download/teste
+INFO:root:
+Renomeações realizadas em /storage/emulated/0/Download/teste: [('Phlinks.jpeg', 'foto 0.jpeg'), ('Mix LoFi Hip Hop Brasil Para Estudar, Trabalhar Ou Dormir ~ Vol_ 1.jpeg', 'foto 1.jpeg'), ('Pin de Kevin Hsieh en Coisas da Anna _ Wallpapers de carros, Imagenes de arte, Arte renacentista pintura.jpeg', 'foto 2.jpeg'), ('Wallpaper sora🌌.jpeg', 'foto 3.jpeg'), ('6ad44dbf-de28-41cf-b0ea-5e6033b965a3.jpeg', 'foto 4.jpeg'), ('Foco.jpeg', 'foto 5.jpeg'), ('ctrl-y.jpeg', 'foto 6.jpeg'), ('Programmer 💸🧑🏻_💻.jpeg', 'foto 7.jpeg'), ('Escute uma musica para ajudar em suas atividades !!!.jpeg', 'foto 8.jpeg')]
+INFO:root:[32mDiretório: /storage/emulated/0/Download/teste[m
+INFO:root:
+[32mRenomeações realizadas em /storage/emulated/0/Download/teste: [('foto 1.jpeg', 'photo 0.jpeg'), ('foto 2.jpeg', 'photo 1.jpeg'), ('foto 3.jpeg', 'photo 2.jpeg'), ('foto 4.jpeg', 'photo 3.jpeg'), ('foto 5.jpeg', 'photo 4.jpeg'), ('foto 6.jpeg', 'photo 5.jpeg'), ('foto 7.jpeg', 'photo 6.jpeg'), ('foto 8.jpeg', 'photo 7.jpeg'), ('foto 0.jpeg', 'photo 8.jpeg')][m
+INFO:root:[32mDiretório: /storage/emulated/0/Download/teste[m
+INFO:root:
+[32mRenomeações realizadas em /storage/emulated/0/Download/teste: [('photo 1.jpeg', 'andre 0.jpeg'), ('photo 2.jpeg', 'andre 1.jpeg'), ('photo 3.jpeg', 'andre 2.jpeg'), ('photo 4.jpeg', 'andre 3.jpeg'), ('photo 5.jpeg', 'andre 4.jpeg'), ('photo 6.jpeg', 'andre 5.jpeg'), ('photo 7.jpeg', 'andre 6.jpeg'), ('photo 8.jpeg', 'andre 7.jpeg'), ('photo 0.jpeg', 'andre 8.jpeg')][m
+INFO:root:[32mDiretório: /storage/emulated/0/Download/teste[m
+INFO:root:
+[32mRenomeações realizadas em /storage/emulated/0/Download/teste: [('andre 1.jpeg', 'foto 0.jpeg'), ('andre 2.jpeg', 'foto 1.jpeg'), ('andre 3.jpeg', 'foto 2.jpeg'), ('andre 4.jpeg', 'foto 3.jpeg'), ('andre 5.jpeg', 'foto 4.jpeg'), ('andre 6.jpeg', 'foto 5.jpeg'), ('andre 7.jpeg', 'foto 6.jpeg'), ('andre 8.jpeg', 'foto 7.jpeg'), ('andre 0.jpeg', 'foto 8.jpeg')][m
+ERROR:root:Ocorreu um erro: [Errno 2] No such file or directory: 'sjsjkaak'
