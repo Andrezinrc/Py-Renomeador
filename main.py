@@ -1,55 +1,84 @@
 import os
-import shutil
 import logging
+from PIL import Image
+from colorama import init, Fore, Back, Style
+
+init(autoreset=True) 
+
+def banner():
+    
+    print(f"{Fore.MAGENTA}{Back.BLACK}{Style.BRIGHT}{'':^50}")
+    print(f"{Fore.MAGENTA}{Back.BLACK}{Style.BRIGHT}{'':^50}")
+    print(f"{Fore.MAGENTA}{Back.BLACK}{Style.BRIGHT}{'':^50}")
+    print(f"{Fore.MAGENTA}{Back.BLACK}{Style.BRIGHT}{'----------------------------------------':^50}")
+    print(f"{Fore.MAGENTA}{Back.BLACK}{Style.BRIGHT}{'* PROJETO RENOMEADOR DE ARQUIVOS *':^50}")
+    print(f"{Fore.MAGENTA}{Back.BLACK}{Style.BRIGHT}{'----------------------------------------':^50}")
+    print(f"{Fore.MAGENTA}{Back.BLACK}{Style.BRIGHT}{'':^50}")
+    print(f"{Fore.MAGENTA}{Back.BLACK}{Style.BRIGHT}{'':^50}")
+    print(f"{Fore.MAGENTA}{Back.BLACK}{Style.BRIGHT}{'':^50}")
+    
+banner()
 
 logging.basicConfig(filename='renomeador.log', level=logging.INFO)
 
-try:
-    # Lista de diretórios para renomeação
-    diretorios = []
+def converter_imagem(nome_arq, extensao_original, extensao_desejada):
+    imagem = Image.open(nome_arq)
+    novo_nome = os.path.splitext(nome_arq)[0] + extensao_desejada
+    imagem.save(novo_nome)
+    return novo_nome
 
-    diretorio = input("\033[34mInforme o diretorio exemplo (diretorio/para/renomeacao): \033[m")
+def renomear():
+    try:
+        print(f"{Fore.BLUE}Exemplo: /caminho/do/diretorio")
+        diretorio = input(f"{Fore.YELLOW}Informe o diretório: {Style.RESET_ALL}")
 
-    diretorios.append(diretorio)
-    # diretorios = ['/diretorio/para/renomeacao']
+        print(f"{Fore.BLUE}Exemplo: jpg,png")
+        escolha_tipo = input(f"{Fore.YELLOW}Escolha o tipo de arquivo ('todos' para todos): {Style.RESET_ALL}")
 
-    for diretorio in diretorios:
+        print(f"{Fore.BLUE}Exemplo: imagem_")
+        padrao_nome = input(f"{Fore.YELLOW}Qual o padrão de nome que deseja: {Style.RESET_ALL}")
+
+        print(f"{Fore.BLUE}Exemplo: jpg")
+        extensao_desejada = input(f"{Fore.YELLOW}Informe a extensão desejada para converter (deixe em branco se não quiser): {Style.RESET_ALL}")
+
         os.chdir(diretorio)
+        logging.info(f'Diretório: {os.getcwd()}')
 
-        logging.info(f'\033[32mDiretório: {os.getcwd()}\033[m')
-
-        padrao_nome = input("\033[34mQual o padrão de nomes de arquivo a usar (sem extensão)? \033[m")
-
-        # Lista para armazenar os antigos e novos nomes dos arquivos
         renomeacoes = []
 
         for contador, arq in enumerate(os.listdir()):
             if os.path.isfile(arq):
-                nome_arq, exten_arq = os.path.splitext(arq)
-                nome_arq = padrao_nome + ' ' + str(contador)
+                _, extensao = os.path.splitext(arq)
+                extensao = extensao.lower().strip()
 
-                nome_novo = f'{nome_arq}{exten_arq}'
+                if (escolha_tipo.lower().strip() == 'todos' or
+                    extensao in escolha_tipo.split(',')):
 
-                # Armazena os antigos e novos nomes
-                renomeacoes.append((arq, nome_novo))
+                    if extensao_desejada:
+                        arq = converter_imagem(arq, extensao, extensao_desejada)
 
-                # Renomeia o arquivo
-                os.rename(arq, nome_novo)
+                    nome_arq, exten_arq = os.path.splitext(arq)
+                    nome_arq = padrao_nome + ' ' + str(contador + 1)
+                    nome_novo = f'{nome_arq}{exten_arq}'
 
-        logging.info(f'\n\033[32mRenomeações realizadas em {diretorio}: {renomeacoes}\033[m')
+                    renomeacoes.append((arq, nome_novo))
+                    os.rename(arq, nome_novo)
 
-    print(f'\n\033[32mArquivos renomeados com sucesso.\033[m')
+        logging.info(f'Renomeações realizadas em {diretorio}: {renomeacoes}')
+        print(f"{Fore.GREEN}Renomeações realizadas com sucesso!")
 
-    # Pergunta ao usuário se deseja reverter as renomeações
-    reverter = input('\033[34mDeseja reverter as renomeações? (S/N): \033[m').lower()
+    except Exception as e:
+        error_message = f"{Fore.RED}Erro: {e}\nDiretório: {diretorio} não encontrado."
+        print(error_message)
 
-    if reverter == 's':
-        # Reverter renomeações
-        for antigo_nome, novo_nome in renomeacoes:
-            os.rename(novo_nome, antigo_nome)
 
-        print('\n\033[32mRenomeações revertidas com sucesso.\033[m')
+renomear()
 
-except Exception as e:
-    print(f'\033[31mOcorreu um erro: {e}\033[m')
-    logging.error(f'Ocorreu um erro: {e}')
+print(f"{Fore.BLUE}Deseja continuar ou finalizar?")
+continuar_ou_finalizar = input(f"{Fore.YELLOW}Digite {Fore.BLUE}S{Fore.YELLOW} para Continuar {Fore.BLUE}N{Fore.YELLOW} para Finalizar: [{Fore.BLUE}s{Fore.YELLOW}/{Fore.BLUE}n{Fore.YELLOW}]: {Style.RESET_ALL}")
+
+if continuar_ou_finalizar.lower() == "s":
+   renomear()
+else:
+   print(f"{Fore.MAGENTA}Obrigado por usar, volte sempre!")
+        
